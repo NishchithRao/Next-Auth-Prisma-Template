@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  LEAD
+  DEV
+}
+
 model User {
   id            String   @unique @default(uuid()) @db.Uuid
   email         String   @unique
@@ -17,6 +23,8 @@ model User {
   image         String?
   emailVerified Boolean?
   Account       Account?
+
+  role Role @unique @default(DEV)
 }
 
 model Account {
